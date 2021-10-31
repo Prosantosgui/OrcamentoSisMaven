@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class OrcamentoRepositoryJpa implements OrcamentoRepository{
@@ -23,7 +22,7 @@ public class OrcamentoRepositoryJpa implements OrcamentoRepository{
 
 	@Override
 	public void salvar(Orcamento orcamento) {
-		entityManager.persist(orcamento);
+		entityManager.merge(orcamento);
 	}
 
 	@Override

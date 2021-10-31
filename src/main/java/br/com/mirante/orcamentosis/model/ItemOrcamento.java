@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "ITEM_ORCAMENTO")
 public class ItemOrcamento implements Serializable{
@@ -35,8 +37,10 @@ public class ItemOrcamento implements Serializable{
 	private float valorTotalInformado;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "ID_ORCAMENTO")
 	private Orcamento orcamento;
+	
 	
 	public ItemOrcamento(Integer id,String origem, String codigo, String descricaoItem, float valorUnitario, String unidadeMedida,
 			float quantidade, float valorTotalInformado) {
@@ -106,6 +110,11 @@ public class ItemOrcamento implements Serializable{
 	public void setOrcamento(Orcamento orcamento) {
 		// TODO Auto-generated method stub
 		this.orcamento = orcamento;
+	}
+
+	public Float getValorTotalCalculado() {
+		
+		return this.quantidade * this.valorUnitario;
 	}
 
 }

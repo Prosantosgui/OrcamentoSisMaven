@@ -4,47 +4,49 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Orcamento implements Serializable{
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7190373383500571611L;
 	private String descricao;
 	@Column(name = "MES")
-	private int Periodo;
+	private Integer Periodo;
 	@Id
-	private int id;
-	private int ano;
+	private Integer id;
+	private Integer ano;
 	@Column(name = "VALOR_TOTAL_INFORMADO")
-	private float valorTotal;
+	private Float valorTotal;
 	
+	@Transient
+	private Float valorTotalCalculado;
 
 	public String getDescricao() {
 		return descricao;
 	}
 	
-	public float getValorTotal() {
+	public Float getValorTotal() {
 		return valorTotal;
 	}
 
-	public void setValorTotal(float valorTotal) {
+	public void setValorTotal(Float valorTotal) {
 		this.valorTotal = valorTotal;
 	}
 
-	public int getPeriodo() {
+	public Integer getPeriodo() {
 		return Periodo;
 	}
-	public void setPeriodo(int periodo) {
+	public void setPeriodo(Integer periodo) {
 		Periodo = periodo;
 	}
-	public int getAno() {
+	public Integer getAno() {
 		return ano;
 	}
 	
-	public Orcamento(String descricao, int periodo,int ano, float valorTotal) 
+	public Orcamento(String descricao, Integer periodo,Integer ano, float valorTotal) 
 	{
 		super();
 		this.descricao = descricao;
@@ -54,7 +56,7 @@ public class Orcamento implements Serializable{
 	}
 	protected Orcamento() {}
 
-	public int getId() {
+	public Integer getId() {
 
 		return id;
 	}
@@ -64,4 +66,26 @@ public class Orcamento implements Serializable{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+		
+	}
+
+	public void setAno(Integer ano) {
+		this.ano = ano;
+		
+	}
+	
+	public Float getValorTotalCalculado() {
+		return valorTotalCalculado;
+	}
+	
+	public void setValorTotalCalculado(Float valorTotalCalculado) {
+		this.valorTotalCalculado = valorTotalCalculado;
+	}
+	public Float getDiferencaCalculo() {
+
+		return valorTotalCalculado - valorTotal;
+		}
 }

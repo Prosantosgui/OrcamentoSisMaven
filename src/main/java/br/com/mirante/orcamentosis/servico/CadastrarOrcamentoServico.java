@@ -1,6 +1,6 @@
 package br.com.mirante.orcamentosis.servico;
 
-import br.com.mirante.orcamentosis.repositorio.ItemRepository;
+import br.com.mirante.orcamentosis.repositorio.ItemOrcamentoRepositoryJpa;
 import br.com.mirante.orcamentosis.repositorio.OrcamentoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class CadastrarOrcamentoServico {
 	private OrcamentoRepository repositorio;
 	
 	@Autowired
-	private ItemRepository itensRepositorio;
+	private ItemOrcamentoRepositoryJpa itensRepositorio;
 	
 	@Transactional
 	public Orcamento cadastrar(Orcamento orcamento, List<ItemOrcamento> itens) {
@@ -28,7 +28,7 @@ public class CadastrarOrcamentoServico {
 			itemOrcamento.setOrcamento(orcamento);
 		}
 		//itens.forEach(item -> item.setOrcamento(orcamento)); mesmo codigo q o de cima 
-		itensRepositorio.salvar(itens);
+		itensRepositorio.saveAll(itens);
 		return orcamento;
 	}
 
